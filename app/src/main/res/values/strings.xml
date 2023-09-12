@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CallLogger</string>
+    <string name="call_logs">Call Logs</string>
+    <string name="last_sync">Last Sync: %s</string>
+    <string name="upload">Upload</string>
+    <string name="data_s">Data: %s</string>
+    <string name="duration"> | Dur: %d s</string>
+    <string name="fromPh">From : %s</string>
+</resources>
