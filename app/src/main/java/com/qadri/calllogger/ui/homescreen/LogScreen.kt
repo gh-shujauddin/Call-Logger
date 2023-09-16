@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.qadri.calllogger.ui
+package com.qadri.calllogger.ui.homescreen
 
 import android.content.Context
 import android.widget.Toast
@@ -55,8 +55,9 @@ fun LogScreen(
     modifier: Modifier = Modifier,
     viewModel: LogScreenViewModel
 ) {
-    val state = viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    viewModel.getCallLogs(context = context)
+    val callLog = viewModel.callList.collectAsState().value
 
     Column(modifier = modifier) {
         LazyColumn(
@@ -64,7 +65,7 @@ fun LogScreen(
                 .weight(1f)
                 .padding(8.dp)
         ) {
-            items(state.value.callList, key = { it.id }) { callData ->
+            items(callLog) { callData ->
                 LogCard(
                     modifier = modifier,
                     callData = callData,
@@ -223,11 +224,10 @@ fun LogCardPreview() {
     LogCard(
         modifier = Modifier,
         callData = CallData(
-            id = 9,
             phoneNumber = "+919382715648",
             callType = "outgoing",
             date = "Tuesday 12 September 2023 11:12:26",
-            duration = 2,
+            duration = "2",
             phoneNumberFrom = "+918682715648",
             fileName = "00919382715648(00918682715648)_20230912111230.mp3"
         ),
